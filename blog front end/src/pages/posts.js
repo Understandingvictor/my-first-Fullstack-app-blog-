@@ -136,7 +136,7 @@ function Posts() {
       </div>
         {
           posts.length === 0 ? (
-            <p style={{fontStyle:"italic"}}>no posts available pls try another filter</p>
+            <p style={{fontStyle:"italic", marginTop:"30vh"}}>no posts available pls try another filter</p>
           ):(
         <div className={style.cardContainerr}>
         {
@@ -188,7 +188,7 @@ function Posts() {
         )
       }
       {
-        pagesLeft !== 0 && (
+        pagesLeft !== 0 && posts.length !== 0  && (
           <button onClick={nextPage} className={style.btnn}>nextPage</button>
         )
 

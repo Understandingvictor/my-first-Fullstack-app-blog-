@@ -11,13 +11,18 @@ function LogContext({ children }) {
 
     //checks for log status
     const logStatusChecking = async () => {
-    const response = await fetch(`${API_URL}/logStatus`, { //we pass userId so the backend checks if logged user is the owner of the dashboard
-            method: "post",
-            credentials: "include"
-        });
-        let data = await response.json();
-    //console.log(data, "is the data from log context");
-        return {isLoggedIn: data.message, userId:data.userId};
+        try {
+             const response = await fetch(`${API_URL}/logStatus`, { //we pass userId so the backend checks if logged user is the owner of the dashboard
+                method: "post",
+                credentials: "include"
+            });
+            let data = await response.json();
+ 
+        return {isLoggedIn: data.message, userId:data.userId}; 
+        } catch(error) {
+            console.log(error.message, "is th the error message");
+        }
+  
     }
     
 

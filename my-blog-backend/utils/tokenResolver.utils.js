@@ -4,7 +4,7 @@ dotenv.config();
 
 const resolveToken = (token) => {
     try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        const decoded = jwt.verify(token, process.env.REFRESHTOKEN_SECRET_KEY );
         if (!decoded.userId) {
             throwErrorMessage("userId not found", 401);
         }

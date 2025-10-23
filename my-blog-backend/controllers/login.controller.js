@@ -202,7 +202,7 @@ const logStatus = async (req, res) => {
     const cookie = req.cookies
     
     if (cookie?.token) {
-      const userId = resolveToken(cookie.token);
+      const userId = resolveToken(cookie.token); //used to check if user is logged in
         return res
         .status(200)
         .json({ message: true, userId:userId });

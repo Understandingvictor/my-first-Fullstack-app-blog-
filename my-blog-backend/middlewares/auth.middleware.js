@@ -11,7 +11,7 @@ const verifyUser = (req, res, next)=>{
         }
 
        // console.log(token, "is the token from auth middleware")
-        jwt.verify(token, process.env.SECRET_KEY, (error, decoded)=>{
+        jwt.verify(token, process.env.ACCESSTOKEN_SECRET_KEY, (error, decoded)=>{
             if (error) {
                 return next(throwErrorMessage("invalid login from auth", 401));
             }
