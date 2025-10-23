@@ -100,7 +100,7 @@ const logout = async (req, res, next) => {
         httpOnly: true,
         path: "/", // Adjust based on how the cookie was originally set
         secure: true, // Use this if cookie was set with `secure: true`
-        sameSite: "strict", // Match your original settings
+        sameSite: "none", // Match your original settings
       })
       .json({ message: "logged out successfully" });
   } catch (error) {
