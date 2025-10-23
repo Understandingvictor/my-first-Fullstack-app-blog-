@@ -11,7 +11,7 @@ const generateTokensAndLogin = (userId, res) => {
                 maxAge: 1200000 * 24,
                 secure: true,
                 httpOnly: true,
-                sameSite: "strict",
+                sameSite: "none",
                 path: "/", // Adjust based on how the cookie was originally set
               })
               .status(200)
