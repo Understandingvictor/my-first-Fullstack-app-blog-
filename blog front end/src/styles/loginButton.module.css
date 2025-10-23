@@ -1,0 +1,39 @@
+.loginButton{
+    background: linear-gradient(45deg, black, red);
+    width: 70%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    color: white;
+    min-height: 39px;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+}
+.goodleIcon{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    
+}
+
+@media (min-width:768px) {
+    .loginButton{
+        min-height: 38px;
+    }
+    span{
+        padding:10px
+    }
+
+}
+@media (min-width:1024px) {
+    .loginButton{
+        min-height: 50px;
+    }
+    span{
+        padding:16px;
+    }
+}

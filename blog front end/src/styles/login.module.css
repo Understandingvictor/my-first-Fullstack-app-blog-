@@ -1,0 +1,96 @@
+.form{
+
+    font-family: mont1;
+
+}
+.formContainer{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    min-width: 50%;
+    width: 90%;
+}
+h1{
+    color: red;
+}
+input{
+    border: none;
+    border-radius: 10px;
+    min-height: 40px;
+    width: 90%;
+    font-size: small;
+    text-align: center;
+    font-size: large;
+}
+hr{
+    border: none;
+    height: 1px;
+    background-color: red;
+
+}
+input::placeholder{
+    font-style: italic;
+    opacity: 80%;
+    font-size: x-small;
+}
+.formInnerContainer{
+    position: relative;
+    box-shadow: 6px -4px 10px -3px pink;
+    border-radius: 10px;
+    border-left: 5px solid red;
+    margin: 10px;
+    padding-bottom: 15px;
+    overflow: hidden;
+}
+.smallContainer{
+    margin-top: 15px;
+    text-align: right;
+    text-decoration: underline;
+    font-family: mont2;
+    font-size: x-small;
+}
+.small{
+    padding-right: 10px;
+}
+.shape{
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(90deg, black, red);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(30%, -30%);
+}
+.inputContainer{
+    margin-top: 80px;
+}
+@media (min-width:768px) {
+    .formContainer{
+        min-width: 30%;
+        width: 45%;
+    }
+    .small{
+        font-size: small;
+    }
+    input::placeholder{
+        font-style: italic;
+        opacity: 80%;
+        font-size: small;
+    }
+}
+@media (min-width:1024px) {
+    .formContainer{
+        min-width: 30%;
+        width: 20%;
+    }
+    .small{
+        font-size: small;
+    }
+    input::placeholder{
+        font-style: italic;
+        opacity: 80%;
+        font-size: x-small;
+    }
+}

@@ -1,0 +1,74 @@
+button:hover{
+    background: rgb(255, 2, 2);
+    color: white;
+    transition: background 0.5s ease;
+    border: none;
+}
+button:active{
+      box-shadow: 0px 0px 5px 3px red;
+      background: red;
+      border: 2px solid white;
+}
+button{
+    cursor: pointer;
+}
+.iconImage{
+    width: 10px;
+}
+a {
+  text-decoration: none;
+  color: inherit; /* takes the parent text color */
+  cursor: pointer;
+}
+/* Adjust calendar container height */
+.flatpickr-calendar {
+    border: none;
+    max-height: 300px !important; /* Reduce height */
+    overflow: hidden !important;
+    background: linear-gradient(200deg, black 10%, rgb(27, 3, 3) 20%);
+  }
+  /* Optional: Adjust month/year selector */
+.flatpickr-current-month {
+    padding: 5px 0 !important;
+  }
+  /* Fix misaligned date highlight */
+.flatpickr-day {
+    padding: 1px;
+    width: calc(100% / 7) !important;  /* Force equal width for all days */
+    max-width: none !important;         /* Override any max-width restrictions */
+    height: 32px !important;            /* Fixed height for consistency */
+    line-height: 32px !important;       /* Center text vertically */
+  }
+
+.swiper-pagination-bullet-active{
+  border: 2px solid rgb(255, 255, 255);
+    background-color: red !important;
+
+}
+@media (min-width:768px) {
+   .swiper-pagination-bullet{
+    transform: scale(0.5);
+   }
+
+}
+@media (min-width:1024px) {
+  .swiper-pagination-bullet{
+    width: 1px;
+    height: 1px;
+    transform: scale(0.5);
+    transition: all 0.7s ease;
+    background-color: white;
+    background: green;
+        margin: 2px;
+
+}
+.iconImage{
+    width: 20px;
+}
+  .swiper-pagination-bullet-active{
+    width: 1px;
+    height: 1px;
+    opacity: 100%;
+
+}
+}

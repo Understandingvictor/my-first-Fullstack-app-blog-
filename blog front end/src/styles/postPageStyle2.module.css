@@ -1,0 +1,240 @@
+/*this styling is meant for  the post page modal*/
+
+.modalContainer{
+    z-index: 110;
+    background-color: red;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    
+    background: linear-gradient(150deg, rgb(224, 9, 9) 50%,  rgb(114, 3, 3) 100%);
+    position: fixed;
+    z-index: 1000;
+    top: 60%;
+    width: 90%;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px 5px rgb(12, 1, 1);
+    transform: translateY(-50%); /* Horizontal centering */
+    height: 100vw; /* Full height when expanded */
+    left: -85vw; /* Start hidden (only 5vh visible) */
+    transition: left 0.5s ease; /* Smooth slide animat*/
+}
+
+.logoutButton{
+    padding: 10px;
+    width: 90px;
+    bottom: 10px;
+    opacity: 0.5;
+    background-color: black;
+     color: rgb(187, 174, 174);
+}
+
+.logoutButton:hover{
+    opacity: 1;
+}
+
+.active{
+    left: 0; /* Fully visible */
+}
+
+.inactive{
+    box-shadow: 0px 0px 5px 1px rgb(37, 6, 6);
+}
+.modalBackdrop{
+    margin: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    opacity: 80%;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, black 10%, red 5%, black 20%);
+}
+.closeModal{
+background-color: transparent;
+border: none;
+z-index: 1100;
+position: absolute;
+top: 50%;
+padding: 0;
+right: 0;
+transform: rotate(90deg);
+}
+
+.filterContainer{
+    text-align: left;
+    padding: 30px 20px;
+    position: absolute;
+    top: 10%;
+    }
+
+.filterIcon{
+        width: 5%;
+        text-align: left;
+        cursor: pointer;
+}
+
+/*styling for contents of the modal in posts page*/
+.sideBarMore{
+    color: white;
+    opacity: 70%;
+}
+.sideBarhr{
+    background-color: rgb(20, 0, 0);
+    height: 2px;
+}
+
+.sideBarContentsContainer{
+    margin-left: 20px;
+    max-height: 180px;
+    overflow-y: auto;
+    margin-right: 10px;
+}
+
+
+.sideBarContents{
+    opacity: 95%;
+    font-family: mont2;
+    padding-top: 5px;
+    font-size: small;
+    text-align: start;
+    margin: 10px;
+    box-shadow: 0px 0px 4px 1px rgb(37, 6, 6);
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    background: linear-gradient(12deg, rgb(70, 8, 8) 50%,  rgb(114, 3, 3) 100%);
+}
+.modalDate{
+    font-style: italic;
+    opacity: 70%;
+}
+.sideBarAuthorContainer{
+    background-color: white;
+    opacity: 100%;
+    margin-top: 20px;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+.logButtonContainer{
+    width: 45%;
+    align-items: center;
+    justify-content: center;
+}
+.sideBarAuthorBlock{
+    margin-left: 10px;
+    border-left: 2px solid black;
+}
+.truncated-text {
+  white-space: nowrap;        /* Prevents text from wrapping to the next line */
+  overflow: hidden;           /* Hides the overflowed text */
+  text-overflow: ellipsis;    /* Displays the ellipsis (...) */
+  max-width: 200px;           /* Set the max width to control where truncation happens */
+}
+
+@media (min-width:768px) {
+    .logoutButton{
+    padding: 10px;
+    width: 100%;
+    bottom: 10px;
+    opacity: 0.5;
+    background-color: black;
+    color: rgb(187, 174, 174);
+}
+.logoutButton:hover{
+    opacity: 1;
+}
+    .modalContainer{
+        box-shadow: 0px 0px 10px 5px rgb(12, 1, 1);
+        width: 41%;
+        height: 40vw; /* Full height when expanded */
+        position: fixed;
+        top: 55%;
+        left: -38vw;
+        box-shadow: none;
+        transition: left 0.5s ease; /* Smooth slide animat*/
+        border-bottom-right-radius: 20px;
+        transform: translateY(-55%); /* vertical centering */
+    }
+    .active{
+    left: -2vw; /* Fully visible */
+    }
+    .closeModal{
+        position: absolute;
+        top: 20px;
+        right: 0;
+       transform: rotate(90deg);
+    }
+
+    .filterIcon{
+        width: 15%;
+    }
+    .sideBarContentsContainer{
+    margin-left: 20px;
+    max-height: 230px;
+    overflow: scroll;
+}
+}
+@media (min-width:1024px) {
+        .sideBarContentsContainer::-webkit-scrollbar{
+        background-color: red;
+    }
+
+    .sideBarContentsContainer::-webkit-scrollbar-track{
+        background-color: red;
+    }
+
+    .sideBarContentsContainer::-webkit-scrollbar-thumb{
+        background-color: rgb(211, 209, 209);
+        border-radius: 10px;
+        opacity: 70%;
+        cursor: pointer;
+    }
+
+    .sideBarContentsContainer::-webkit-scrollbar-thumb:hover{
+        background-color: rgb(255, 255, 255);
+            opacity: 100%;
+    }
+
+    .modalContainer{
+           box-shadow: 0px 0px 10px 5px rgb(12, 1, 1);
+        width: 30%;
+        position: fixed;
+        left: -28vw; /* Start hidden (only 5vh visible) */
+        height: 30vw; /* Full height when expanded */
+    }
+    .sideBarContentsContainer{
+    margin-left: 20px;
+    max-height: 250px;
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.active{
+    left: 3vw; /* Fully visible */
+}
+
+.sideBarAuthorContainer{
+    background-color: white;
+    opacity: 70%;
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    .filterContainer{
+        text-align: left;
+        padding: 30px 30px;
+        position: absolute;
+        top: 2%;
+        }
+    .filterIcon{
+        width: 8%;
+    }
+
+}

@@ -1,0 +1,272 @@
+.mainContainer{
+    top: 0;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+}
+.imageAndName{
+    padding-top: 10px;
+    padding-left: 2px;
+    padding-bottom: 10px;
+    text-align: left;
+    box-shadow: 6px 4px 10px 7px pink;
+}
+.logoutButton{
+    width: 50%;
+    opacity: 0.5;
+    background-color: black;
+     color: rgb(187, 174, 174);
+     margin-top: 10px;
+
+}
+.uploadButton{
+    background: red;
+    z-index:100000;
+    outline: 2px solid white;
+    padding: 5px;
+    border-radius: 6px;
+    font-family: mont2;
+    font-size:  smaller;
+    font-style: italic;
+}
+.logoutButton:hover{
+    opacity: 1;
+    border: 2px solid black;
+}
+.logoutButton:active{
+    border: 2px solid rgb(255, 255, 255);
+}
+.imageAndNameinner{
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+.authorImageContainer{
+background-image: url("../");
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgb(0, 0, 0); 
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+.authorImageAndUpdateIcon{
+    display: block;
+    padding: 0;
+}
+.usernameAndIntro{
+display: flex; 
+align-items:last baseline;
+justify-content:center;
+flex-direction: column;
+color: red;
+}
+.authorUsername{
+     font-family: mont1;
+    font-size: larger;
+    padding-top: 0;
+    margin: 0;
+}
+.intro{
+    font-size: small;
+     font-family: mont2;
+    margin: 0;
+}
+.isFollowing{
+    font-family: mont1;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: white;
+    border: none;
+    margin: 0;
+     background: linear-gradient(12deg, red 50%,  rgb(114, 3, 3) 100%);
+}
+.followingContainer{
+    margin-left: 10px;
+}
+
+.dashboardSideBar{
+    background-color: red;
+    color: white;
+    position: fixed;
+    z-index: 110;
+    border-radius: 5px;
+}
+.backDropDashboard{
+    width: 100vw;
+    height: 100vh;
+    display: absolute;
+    background-color: rgb(0, 0, 0);
+    opacity: 50%;
+}
+.modalBackdrop{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    opacity: 80%;
+    width: 100vw;
+    height: 100vh;
+   background: linear-gradient(45deg, black 10%, red 5%, black 20%);
+}
+.headline{
+    padding-top: 20px;
+    font-family: mont1;
+    font-size: larger;
+    font-weight: 600;
+    margin: 0;
+}
+.postPageHr{
+    margin: 0;
+    height: 2px;
+}
+.postBody{
+    padding: 5px;
+    font-family: mont2;
+    font-weight: lighter;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 8%;
+    text-align: justify;
+}
+
+/*styling for updatePicture*/
+.updateProfileIcon{
+    width:25px;
+    height: 25px;
+    position: relative;
+
+}
+
+/*styling for hamburger*/
+.hamburger{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+  .hamburger:active{
+        box-shadow: 0px 0px 10px 7px rgb(235, 206, 211);
+        border: 2px solid red;
+  }
+  .hamburger:hover{
+    border: 3px solid red;
+    border-radius: 5px;
+    transition: border 1s ease-in;
+  }
+
+.hamburgerLine1{
+    background: linear-gradient(45deg, black, red);
+    margin-left: 5px;
+}
+.hamburgerLine2{
+    background-color: rgb(19, 1, 1);
+}
+.hamburgerLine3{
+    background: linear-gradient(45deg, black, red);
+    margin-left: 5px;
+}
+.hamburgerLine1, .hamburgerLine2, .hamburgerLine3{
+    width:25px;
+    border-radius: 5px;
+    height: 5px;
+}
+
+
+/*styling for DashboardComponent component*/
+.components{
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: mont2;
+    display: flex;
+    margin: 5px;
+    padding: 0;
+}
+.titleh3{
+    background: linear-gradient(150deg, red 50%,  rgb(114, 3, 3) 100%);
+    padding: 5px;
+    margin: 0;
+    color: white;
+    border-radius: 5px;
+    font-size: x-small;
+    word-wrap: break-word;
+    width: 180px;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.btnn{
+    background: linear-gradient(150deg, red 50%,  rgb(114, 3, 3) 100%);
+     padding: 5px;
+     border-radius: 5px;
+     color: white;
+     font-family: mont1;
+     border: none;
+     margin: 5px 5px;
+     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+}
+    .btn{
+        background: transparent;
+   /* background: linear-gradient(150deg, red 50%,  rgb(114, 3, 3) 100%);*/
+    margin-left: 10px;
+     padding: 0;
+     border-radius: 5px;
+     color: white;
+     font-family: mont1;
+     border: none;
+     box-shadow: 0px 0px 2px 1px rgb(236, 205, 211);
+}
+
+
+/*styling for dashboardjs page*/
+.experienceCardContainer{
+    margin-top: 190px;
+}
+@media (min-width:768px) {
+    .imageAndName{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    padding: 10px;
+    gap: 10px;
+}
+/*styling for updatePicture*/
+.updateProfileIcon{
+    width:25px;
+    height: 25px;
+    display: flex;
+    position: relative;
+}
+.hamburger{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    width: 25px;
+    padding: 5px;
+    cursor: pointer;
+}
+}
+@media (min-width:1024px) {
+    .titleh3{
+    background: linear-gradient(150deg, red 50%,  rgb(114, 3, 3) 100%);
+    padding: 5px;
+    margin: 0;
+    color: white;
+    border-radius: 5px;
+    font-size: small;
+    word-wrap: break-word;
+    width: 300px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+
+}

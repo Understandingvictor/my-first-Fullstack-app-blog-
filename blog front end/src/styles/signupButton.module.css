@@ -1,0 +1,22 @@
+.signUpButton{
+    background: linear-gradient(45deg, black, red);
+    width: 80%;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: white;
+    min-height: 39px;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+}
+@media (min-width:768px) {
+    .signUpButton{
+        min-height: 38px;
+    }
+
+}
+@media (min-width:1024px) {
+    .signUpButton{
+        min-height: 50px;
+    }
+}

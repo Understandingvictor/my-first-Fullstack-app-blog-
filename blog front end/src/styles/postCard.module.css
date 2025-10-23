@@ -1,0 +1,140 @@
+.cardContainer{
+    
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px ;
+    background-color: black;
+        background:transparent;
+        background-image: url("../assets/images/bg2.jpg");
+        background-position:100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+     box-shadow: 0px 0px 3px 3px rgb(100, 1, 19);
+    width: 90%;
+    margin-bottom: 15px;
+
+    overflow: hidden;
+    min-height: 200px;
+    opacity: 90%;
+
+
+}
+
+
+.authorImageContainer{
+    width: 35px;
+    height: 35px;
+    border: 2px solid rgb(0, 0, 0); 
+    background-color: transparent;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: fill;
+}
+.reactionCount{
+    background-color: rgb(255, 0, 0);
+    padding: 2px;
+    margin: 1px;
+    border-radius: 100px;
+    font-size: x-small;
+    color: white;
+    opacity: 80%;
+}
+.imageAndName{
+    background-color: transparent;
+    display: flex;
+    padding: 2px;
+}
+.shareReact{
+    opacity: 80%;
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid red;
+    position: absolute;
+    border-radius: 5px;
+    overflow: hidden;
+    bottom: 0;
+    width: 100%;
+}
+.btn{
+    border: none;
+}
+.usernameAndIntro{
+display: flex; 
+align-items:last baseline;
+justify-content:last baseline;
+padding-top: 10px;
+flex-direction: column;
+color: aliceblue;
+}
+.intro{
+    font-size: xx-small;
+    margin: 0;
+    opacity: 70%;
+}
+.authorUsername{
+    opacity: 70%;
+    font-size: small;
+    padding-top: 0;
+    margin: 0;
+    white-space: nowrap;        /* Prevents text from wrapping to the next line */
+  overflow: hidden;           /* Hides the overflowed text */
+  text-overflow: ellipsis;    /* Displays the ellipsis (...) */
+  max-width: 70px; 
+  }
+.truncated-text {
+  white-space: nowrap;        /* Prevents text from wrapping to the next line */
+  overflow: hidden;           /* Hides the overflowed text */
+  text-overflow: ellipsis;    /* Displays the ellipsis (...) */
+  max-width: 200px;           /* Set the max width to control where truncation happens */
+}
+
+.topic {
+    opacity: 90%;
+  color: aliceblue;
+  text-align: center;
+  max-width: 300px;
+  max-height: 4.5em;       /* Set height for up to 3 lines (1.5em line-height * 3) */
+  line-height: 1.5em;
+  overflow: hidden;
+  display: -webkit-box;
+      border: 2px solid rgb(29, 29, 1);
+      border-radius: 5px;
+      background-color: rgb(8, 0, 0);
+  -webkit-line-clamp: 3;    /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.dateTime{
+    display: flex;
+    font-size: x-small;
+    font-style: italic;
+    opacity: 60%;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    justify-content: center;
+}
+@media (min-width:768px) {
+    .cardContainer{
+    width: 100%;
+    margin: 5px;
+        background-image: url("../assets/images/bg2.jpg");
+        background-position:100%;
+                background-size: cover;
+        background-repeat: no-repeat;
+     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px ;
+    opacity: 90%;
+    justify-content: center;
+
+}
+.mainCardCont{
+
+    text-align: center;
+}
+}
