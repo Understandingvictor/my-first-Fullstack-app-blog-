@@ -146,7 +146,7 @@ const forgotPassword = async (req, res, next) => {
 
     return res.json({ message: "email sent to the provided email address"});
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message, "is the error")
     next(error)
   }
 }

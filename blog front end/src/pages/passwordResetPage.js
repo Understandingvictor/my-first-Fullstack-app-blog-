@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import LoginButton from "../components/loginButton";
 import style from "../styles/login.module.css";
+import Spinner from "../components/spinner";
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 
@@ -11,6 +12,7 @@ function PasswordResetPage() {
         newPassword: "",
         confirmNewPassword:""
     });
+    const [triggerSpinner, setTriggerSpinner] = useState(false);
     const navigate = useNavigate();
 
     const inputHandler = (e) => {
@@ -22,6 +24,7 @@ function PasswordResetPage() {
 
     //handler for form submission
     const formHandler = async (e) => {
+      setTriggerSpinner(true);
         e.preventDefault();
         if (password.newPassword !== password.confirmNewPassword) {
             setStatus("passwords DON'T match");
@@ -48,7 +51,8 @@ function PasswordResetPage() {
     });
     
     const data = await res.json();
-    if ( res.status === 200) {
+      if (res.status === 200) {
+      setTriggerSpinner(true);
       setStatus(data.message);
       setTimeout(() => {
         setStatus("redirecting to login");
@@ -67,6 +71,11 @@ function PasswordResetPage() {
              <div className={style.formContainer}>
                     <h1>CHANGE PASSWORD</h1>
                 <form onSubmit={formHandler} className={style.form}>
+                          { 
+                            triggerSpinner && (
+                              <Spinner/>
+                            )
+                          }
                      <p style={{ fontStyle: "italic", fontSize: "small", color:"red"}}>{status}</p>
                       <div className={style.formInnerContainer}>
                         <div className={style.shape}></div>
