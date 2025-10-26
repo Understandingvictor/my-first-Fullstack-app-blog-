@@ -7,6 +7,7 @@ import SignUpButton from "../components/signUpButton";
 import { LogUseContext } from "../contexts/logStatusContext";
 import { AccessTokenUseContext } from "../contexts/accessTokenContext";
 import { motion } from 'motion/react';
+import Spinner from '../components/spinner';
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 function Login() {
@@ -15,6 +16,7 @@ function Login() {
   
   // const [ user, setUser ] = useState([]);
   // const [ profile, setProfile ] = useState([]);
+  const[triggerSpinner, setTriggerSpinner] = useState(false);
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -83,8 +85,10 @@ function Login() {
     return;
   };
 
+
   //form submitting handler
   const submitHandler = async (e) => {
+    setTriggerSpinner(true);
     e.preventDefault();
     try {
       const formData = new FormData(e.target);
@@ -113,10 +117,12 @@ function Login() {
 
       }
       else if (response.status === 404) {
+        setTriggerSpinner(false);
         setStatus("user not found");
          clearStatus(3000)
       }
       else {
+        setTriggerSpinner(false);
         setStatus("something went wrong");
         clearStatus(3000);
       }
@@ -142,7 +148,10 @@ function Login() {
                 duration: 0.4,
                scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}>
-        <h1>LOGIN</h1>
+          <h1>LOGIN</h1>
+          {
+            triggerSpinner && (<Spinner />)
+          }
     <p style={{ fontStyle: "italic", fontSize: "large" }}>{status}</p>
         <form className={style.form} onSubmit={submitHandler}>
           <div className={style.formInnerContainer}>
@@ -181,12 +190,14 @@ function Login() {
           </form>
           
          <div>
+         <center>
           <GoogleLogin
             onSuccess={handleLoginSuccess}
               theme="outline"
               size="large"
               shape="pill"
               text="continue_with"></GoogleLogin>
+              </center>
           </div>
           </motion.div>
         </div>

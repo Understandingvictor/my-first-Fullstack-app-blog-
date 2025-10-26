@@ -6,7 +6,7 @@ button:hover{
 }
 button:active{
       box-shadow: 0px 0px 5px 3px red;
-      background: red;
+      outline: 2px solid red;
       border: 2px solid white;
 }
 button{

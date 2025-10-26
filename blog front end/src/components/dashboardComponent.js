@@ -14,7 +14,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 
    
-function ExperienceCard({ title, likes, dislikes, userId, postId, setIsDeleted}) {
+function ExperienceCard({ title, likes, dislikes, userId, postId, setIsDeleted, deleteResponse, DeleteResponseFromUser, triggerModal }) {
   const navigate = useNavigate();
   //const [isDeleted, setIsDeleted] = useState(null);
 const { accessToken, setAccessToken } = AccessTokenUseContext();
@@ -29,47 +29,65 @@ const { accessToken, setAccessToken } = AccessTokenUseContext();
         return;
   }
 
-  //handler to delete a post
-  const deleteHandler = async () => {
-    try {
-       const res = await fetch(`${API_URL}/post/deletePost?postId=${postId}`, {
-         method: "delete",
-         headers: {
-                "Authorization": `Bearer ${accessToken}`,
-         },
-
-       credentials: "include",
-     })
-     if (res.ok || res.status === 200) {
-        const data = await res.json();
-        setIsDeleted();// a function being called to remount the dashboard
-       return;
+  const modalTrigger = () => {
+    triggerModal();
+  }
+    //handler to trigger delete modal
+  const deleteModalTrigger = async() => {
+    const response = await DeleteResponseFromUser();
+    if (response === true) deleteHandler();
+    else {
+      return;
     }
-      if (res.status === 401) {
-                const { newAccessToken, statusCode } = await getAccessToken();
-                          if (statusCode === 403) { //meaning theres no refresh token
-                            const redirectPath = window.location.pathname
-                            sessionStorage.setItem("redirectPath", redirectPath);
-                            navigate('/login');
-                            return;
-             }
-                     if (newAccessToken) { //meaning theres new access token
-                       setAccessToken(newAccessToken); //we set new access token
-                       const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${newAccessToken}`, }
-                       const response = await apiReFetch(`${process.env.REACT_APP_BACKEND_URL}/post/deletePost?postId=${postId}`, "post", headers);
-                       if (response.status) {
-                         navigate('/error');
-                       }
-                      setIsDeleted();// a function being called to remount the dashboard
-                       return;
-                     }
-        navigate(`/myDashboard/${userId}`);
-      }
-      if (res.status === 404) {
-        const redirectPath = window.location.pathname
-        sessionStorage.setItem("redirectPath", redirectPath);
-        navigate('/login');
-      }
+  }
+
+  //handler to delete a post
+    const deleteHandler = async () => {
+      try {
+        deleteResponse(async(usersChoice) => {
+              if (usersChoice === true) {
+                      const res = await fetch(`${API_URL}/post/deletePost?postId=${postId}`, {
+                          method: "delete",
+                          headers: {
+                                  "Authorization": `Bearer ${accessToken}`,
+                          },
+                        credentials: "include",
+                      })
+              if (res.ok || res.status === 200) {
+                  const data = await res.json();
+                  setIsDeleted();// a function being called to remount the dashboard
+                return;
+              }
+              if (res.status === 401) {
+                        const { newAccessToken, statusCode } = await getAccessToken();
+                                  if (statusCode === 403) { //meaning theres no refresh token
+                                    const redirectPath = window.location.pathname
+                                    sessionStorage.setItem("redirectPath", redirectPath);
+                                    navigate('/login');
+                                    return;
+                    }
+                            if (newAccessToken) { //meaning theres new access token
+                              setAccessToken(newAccessToken); //we set new access token
+                              const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${newAccessToken}`, }
+                              const response = await apiReFetch(`${process.env.REACT_APP_BACKEND_URL}/post/deletePost?postId=${postId}`, "post", headers);
+                              if (response.status) {
+                                navigate('/error');
+                              }
+                              setIsDeleted();// a function being called to remount the dashboard
+                              return;
+                            }
+                navigate(`/myDashboard/${userId}`);
+              }
+              if (res.status === 404) {
+                const redirectPath = window.location.pathname
+                sessionStorage.setItem("redirectPath", redirectPath);
+                navigate('/login');
+              }
+          }
+          else{
+                return;
+          }
+        });
     } catch (error) {
        return { error: error.message };
     }
@@ -119,7 +137,6 @@ const { accessToken, setAccessToken } = AccessTokenUseContext();
           <div>
             <DashboardButton image={<img src={like} className="iconImage" alt="like"/>}/> <span style={{fontSize:"xx-small"}}>{likes}</span>
             <DashboardButton image={<img src={disliker} className="iconImage" alt="dislike" />}/><span style={{ fontSize: "xx-small" }}>{dislikes}</span>
-            
             {
               isAdmin && (
                 <>

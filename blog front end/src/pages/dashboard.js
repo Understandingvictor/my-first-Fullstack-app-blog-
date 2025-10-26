@@ -10,7 +10,8 @@ import { getAccessToken } from "../helpers/checkAuth";
 import { apiReFetch } from "../helpers/generalRetrying.helpers";
 import { motion } from "motion/react";
 import { buttonAnimation } from "../motions/motion1.motions";
-import defaultImage from "../assets/images/default.jpg"
+import defaultImage from "../assets/images/default.jpg";
+import Spinner from '../components/spinner';
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 function UsersDashboard({ userName, desc }) {
@@ -30,6 +31,9 @@ function UsersDashboard({ userName, desc }) {
    const { accessToken, setAccessToken } = AccessTokenUseContext();
   const { logStatus, userIdFromContext } = LogUseContext();  
   const [isAdmin, setIsAdmin] = useState(null);
+  const [triggerSpinner, setTriggerSpinner] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [callback, setCallback] = useState(null);
 //const { setLogStatus, userIdFromContext} = LogUseContext(); //this from context api
 
   
@@ -51,12 +55,23 @@ function UsersDashboard({ userName, desc }) {
 
 
 
+  const deleteModalHandler = async (callBack) => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+    setCallback(()=>callBack);
+  }
+  const handleModalResult = (usersChoice) => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+    if (callback) callback(usersChoice);
+}
+
   const fetchUserDashboard = async() => {
     try {
       const res = await fetch(`${API_URL}/post/allPosts?id=${userId}&requestFromDashboard=yes`);
       if (res.status === 200) {
+      
         const data = await res.json();
         setPosts(data.Posts);
+          setTriggerSpinner(false);//off the spinner
         if (data.Posts.length !== 0) {
           let picsUrl;
           if (data.Posts[0]?.user.profilePics) {
@@ -315,7 +330,7 @@ function UsersDashboard({ userName, desc }) {
   }
 
   useEffect(() => {
-   
+   setTriggerSpinner(true);//start the spinner
     checkIfAdmin();
     fetchUserDashboard();
     fetchIfFollowing();
@@ -325,6 +340,14 @@ function UsersDashboard({ userName, desc }) {
   }, [isPictureUploaded, isDeleted, isAdmin, text, isEditing]);
   return (
     <>
+      <motion.div
+         initial={{ opacity: 0 }}
+            animate={{ opacity: 1}}
+            transition={{
+                duration: 0.4,
+               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            }}
+      >
       <div className={style.mainContainer}>
         <div className={style.imageAndName}>
           <div>
@@ -382,8 +405,9 @@ function UsersDashboard({ userName, desc }) {
         </div>
       </div>
       <div className={style.experienceCardContainer}>
-        
         {
+          triggerSpinner ? (<Spinner />) : (
+                    
           posts.length === 0 ? (
             <>
               <p style={{ fontStyle: "italic", marginTop: "50vh" }}>CREATE YOUR FIRST POST TO USE DASHBOARD</p><br></br>
@@ -412,11 +436,15 @@ function UsersDashboard({ userName, desc }) {
                               userId={eachPost.user._id}
                                 postId={eachPost._id}
                                 setIsDeleted={setIsdeletedStatus}
+                                deleteResponse={deleteModalHandler}
                               />
                           </>)
                         })
                           )
+        
+          )
         }
+
 
        
         {
@@ -461,13 +489,37 @@ function UsersDashboard({ userName, desc }) {
               type="file" onChange={(e)=>updateProfilePicsHandler(e)}></input>
           </div>
 
-        </ProfilePicsUploadComponent>
+            </ProfilePicsUploadComponent>
+            
 
           )
         }
         
-        
+        {
+          isDeleteModalOpen && (
+            <ProfilePicsUploadComponent>
+              <div className={style.modalBackdrop}></div>
+              <div style={{
+                outline: "white",
+                color: "white",
+                zIndex: 200,
+                background: "black",
+                position: "fixed",
+                padding: "10px",
+                borderRadius:"10px"
+              }}>
+                <div >
+                  <h3>Are you sure you want to <span style={{color:"red"}}>DELETE</span> this post?</h3>
+                  <hr />
+                  <br/>
+                  <button style={{background:"red", padding:"10px", borderRadius:"10px"}} onClick={()=>handleModalResult(true)}>YES</button><button style={{padding:"10px"}} className={style.btnn} onClick={()=>handleModalResult(false)}>NO</button>
+               </div>
+              </div>
 
+            </ProfilePicsUploadComponent>
+          )
+        }
+        
 
         {
           isModalOpen && (
@@ -490,7 +542,8 @@ function UsersDashboard({ userName, desc }) {
           )
         }
       
-      </div>
+        </div>
+        </motion.div>
     </>
   );
 }

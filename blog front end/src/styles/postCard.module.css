@@ -9,7 +9,7 @@
         background-size: cover;
         background-repeat: no-repeat;
      box-shadow: 0px 0px 3px 3px rgb(100, 1, 19);
-    width: 90%;
+    width: 100%;
     margin-bottom: 15px;
 
     overflow: hidden;
@@ -17,6 +17,15 @@
     opacity: 90%;
 
 
+}
+.mainCardCont{
+
+    text-align: center;
+    width: 90%;
+
+    margin: 10px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 
@@ -59,6 +68,7 @@
 }
 .btn{
     border: none;
+    padding: 5px;
 }
 .usernameAndIntro{
 display: flex; 
@@ -126,7 +136,7 @@ color: aliceblue;
                 background-size: cover;
         background-repeat: no-repeat;
      box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
-     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px ;
     opacity: 90%;
@@ -136,5 +146,10 @@ color: aliceblue;
 .mainCardCont{
 
     text-align: center;
+    width: 100%;
+
+    margin: 10px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 }

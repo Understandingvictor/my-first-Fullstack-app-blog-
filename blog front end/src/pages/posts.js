@@ -5,6 +5,7 @@ import style from "../styles/posts.module.css";
 import ShareYours from "../components/makePostButton";
 import { useEffect, useState } from "react";
 import formatDate from "../helpers/dateFormat";
+import Spinner from '../components/spinner';
 
 import Filter from "./filter";
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -19,6 +20,7 @@ function Posts() {
   const [pages, setPages] = useState(1);
   const [pagesLeft, setPagesLeft] = useState(1);
   const [currentPage, setCurrentPage] = useState(1); 
+  const[triggerSpinner, setTriggerSpinner] = useState(false);
 
   //this is a function we call to apply filtering
   const applyFiltering = async(choosedDate, choosedEndDate, choosedCategory) => {
@@ -55,6 +57,7 @@ function Posts() {
         //console.log(currentPage, "is the current page from front end");
         const data = await res.json();
         if (!res.ok) {
+          setTriggerSpinner(false);//off the spinner
           //console.log("error here at fetch post on posts page")
           navigate("/error");
           return;
@@ -64,6 +67,7 @@ function Posts() {
         setPages(data.Pages);
         setPagesLeft(data.pagesLeft);
         setCurrentPage(data.currentPage);
+        setTriggerSpinner(false);//off the spinner
       } catch (error) {
         navigate("/error");
       }
@@ -111,6 +115,7 @@ function Posts() {
   }
 
   useEffect(() => {
+    setTriggerSpinner(true)
     fetchPosts();
     trackScreenWidth();
     // eslint-disable-next-line
@@ -133,8 +138,10 @@ function Posts() {
       }}>
         <p> PAGE {currentPage} of {pages}</p>
         
-      </div>
+        </div>
         {
+          triggerSpinner ? (<Spinner />) : (
+            
           posts.length === 0 ? (
             <p style={{fontStyle:"italic", marginTop:"30vh"}}>no posts available pls try another filter</p>
           ):(
@@ -173,7 +180,10 @@ function Posts() {
         
         </div>
           )
+        
+          )
         }
+        
       
       </center>
 

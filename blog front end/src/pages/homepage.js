@@ -7,8 +7,10 @@ import { useState, useEffect } from "react";
 import formatDate from "../helpers/dateFormat";
 import { LogUseContext } from "../contexts/logStatusContext";
 import { motion } from "motion/react";
-import { buttonAnimation } from "../motions/motion1.motions";
+import { buttonAnimation, postCardAnimation } from "../motions/motion1.motions";
+import quote from "../assets/images/quote.jpg"
 import ShinyText from "../components/shinyText";
+import Form from "../components/form";
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -184,31 +186,49 @@ function Homepage() {
       </div>
       <fieldset>
         <legend className={style.fieldset}>
-          <h3 className={style.feature}>EXPERIENCES</h3>
-        </legend>{" "}
-
-          <div className={style.cardContainerr}>
-                  {
-                    posts.map((eachPost, index) => {
-                      let date = formatDate(`${eachPost.updatedAt}`);
-                      return (
-                        <>
-                          <Card key={index}
-                            authorUsername={<Link to={`/myDashboard/${eachPost.user._id}`}>{eachPost.user.username}</Link>}
-                            topic={<Link to={`/body/${eachPost._id}/${eachPost.user._id}/${eachPost.likes}/${eachPost.dislikes}`}>{eachPost.title}</Link>}
-                            datePublished={date}
-                            bio={eachPost.user.bio}
-                            picture={`${API_URL}${eachPost.user.profilePics}`}
-                            userId={eachPost.user._id}
-                            postId={eachPost._id}
-                            likes={eachPost.likes}
-                            dislikes={eachPost.dislikes}
-                            IsReactedToFunction={isReactedToHandler}
-                          />
-                      </>)
-                    })
-                  }
+          <ShinyText 
+            text="EXPERIENCES" 
+            disabled={false} 
+            speed={3} 
+            className={style.feature}
+          />
+        </legend>
+        <div className={style.sectionContainer}>
+          <motion.div
+                      variants={postCardAnimation}
+                      whileHover="whileHover"
+                      initial="hidden"
+                        whileInView="visible"
+                        viewport={{once:true}}
+            className={style.imageContainer}><img src={quote} className={style.quote} />
+          </motion.div>
+            <div className={style.cardContainerr}>
+              <div className={style.innerContainer}>
+                    {
+                      posts.map((eachPost, index) => {
+                        let date = formatDate(`${eachPost.updatedAt}`);
+                        return (
+                          <>
+                            <Card key={index}
+                              authorUsername={<Link to={`/myDashboard/${eachPost.user._id}`}>{eachPost.user.username}</Link>}
+                              topic={<Link to={`/body/${eachPost._id}/${eachPost.user._id}/${eachPost.likes}/${eachPost.dislikes}`}>{eachPost.title}</Link>}
+                              datePublished={date}
+                              bio={eachPost.user.bio}
+                              picture={`${API_URL}${eachPost.user.profilePics}`}
+                              userId={eachPost.user._id}
+                              postId={eachPost._id}
+                              likes={eachPost.likes}
+                              dislikes={eachPost.dislikes}
+                              IsReactedToFunction={isReactedToHandler}
+                            />
+                        </>)
+                      })
+                    }
+              </div>
+          </div>
+          <Form/>
         </div>
+
         <Link to={"/experiences"}>< motion.button 
                       animate="animate"
                       variants={buttonAnimation}
@@ -223,7 +243,8 @@ function Homepage() {
               <span className={style.downFall}>YOUR SILENCE</span>could be
               someone making a mistake, SPEAK - your story might save them
             </h3>
-            <Link to={"/newPost"}>
+            <div className={style.bottomm}>
+              <Link to={"/newPost"}>
               < motion.button 
                       variants={buttonAnimation}
                       whileTap="whileTap"
@@ -231,6 +252,8 @@ function Homepage() {
                       className={style.btnn}>SHARE EXPERIENCE
               </motion.button>
             </Link>
+            </div>
+            
           </div>
         </center>
       </div>

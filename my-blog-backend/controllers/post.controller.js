@@ -239,13 +239,13 @@ const submitReactions = async (req, res, next) => {
             //console.log(userReaction, "is the user reaction")
             if (userReaction) {
                 if (userReaction.dislikes === true) {//this user disliked and now likes without disabling dislike
-                    await reactionModel.findOneAndUpdate({ userId: userId }, { dislikes: false, likes: true }, { new: true }); 
+                    await reactionModel.findOneAndUpdate({ userId: userId, postId:postId  }, { dislikes: false, likes: true }, { new: true }); 
                     const foundPost = await postModel.findByIdAndUpdate(postId, { $inc: { likes: 1, dislikes: -1 } }, { new: true });
                     return res
                         .status(200).json({ data: foundPost, message: "success" });
                 }
                 const foundPost = await postModel.findByIdAndUpdate(postId, { $inc: { likes: -1 } }, { new: true });
-                const deletedReaction = await reactionModel.findOneAndDelete({ userId: userId });
+                const deletedReaction = await reactionModel.findOneAndDelete({ userId: userId, postId:postId });
                 //console.log(deletedReaction, "this is the deleted post");
                 return res
                     .status(200)
@@ -272,7 +272,7 @@ const submitReactions = async (req, res, next) => {
             if (userReaction) {
                 if (userReaction.likes === true) {//this user "like"d and now "dislikes" without disabling "like"
                 //     await reactionModel.findOneAndDelete({ userId: userId });
-                     await reactionModel.findOneAndUpdate({ userId: userId }, { likes: false, dislikes:true }, { new: true });
+                     await reactionModel.findOneAndUpdate({ userId: userId, postId:postId }, { likes: false, dislikes:true }, { new: true });
                      const updatedPost = await postModel.findByIdAndUpdate(postId, { $inc: { dislikes: 1, likes:-1 }}, { new: true });
                      return res
                          .status(200)
@@ -287,7 +287,7 @@ const submitReactions = async (req, res, next) => {
                 // }
   
                 const updatedPost = await postModel.findByIdAndUpdate(postId, { $inc: { dislikes: -1 } }, { new: true });
-                await reactionModel.findOneAndDelete({ userId: userId });
+                await reactionModel.findOneAndDelete({ userId: userId, postId:postId  });
                 return res
                     .status(200)
                     .json({ data:updatedPost, message: "success" })

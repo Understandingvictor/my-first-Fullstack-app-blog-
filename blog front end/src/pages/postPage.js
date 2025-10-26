@@ -13,6 +13,7 @@ import { AccessTokenUseContext } from "../contexts/accessTokenContext";
 import { getAccessToken } from "../helpers/checkAuth";
 import defaultImage from "../assets/images/default.jpg"
 import { apiReFetch } from "../helpers/generalRetrying.helpers";
+import { motion } from "motion/react";
 
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -300,7 +301,14 @@ function PostPage({image, userName, desc, following, topic, body}){
   }, [postId, like, dislike]);
 return (
   <>
-    <div className={style.mainContainer}>
+    <motion.div
+        initial={{ opacity: 0, scale: 0.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.4,
+               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            }}
+      className={style.mainContainer}>
       <div className={style.imageAndName}>
         <div className={style.imageAndNameCont} >
       
@@ -331,7 +339,7 @@ return (
           <div className={style.hamburgerLine3}></div>
         </div>
       </div>
-    </div>
+    </motion.div>
     <div className={style.bodyContainer}>
       <h1 className={style.headline}>{fetchedPost.title}</h1>
       <hr className={style.postPageHr} />
