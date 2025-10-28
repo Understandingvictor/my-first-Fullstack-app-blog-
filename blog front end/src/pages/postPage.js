@@ -25,7 +25,7 @@ function PostPage({image, userName, desc, following, topic, body}){
   const [fetchedPost, setFetchedPost] = useState({});
   const [authorPosts, setAuthorPosts] = useState([]) //to grab more posts from author
   const { postId, userId } = useParams(); //grab post id from route
-   const [profileAvatar, setProfileAvatar] = useState(null)
+  const [profileAvatar, setProfileAvatar] = useState(null);
   let [like, setLike] = useState(0);
   let [dislike, setDislike] = useState(0);
   let [isFollowing, setIsFollowing] = useState(false);;
@@ -43,7 +43,21 @@ function PostPage({image, userName, desc, following, topic, body}){
       setFetchedPost(data.data);
       setLike(data.data?.likes);
       setDislike(data.data?.dislikes);
+      let picsUrl;
+      
+      if (data.data?.user.profilePics) {
+        console.log("i entered here");
+            setProfileAvatar(`${API_URL}${data.data?.user.profilePics}`);
+            return;
+          }
+      else {
+        console.log("i entered else");
+            setProfileAvatar(null); 
+            return;
+          }
+     
     }
+    
     else {
       navigate('/error');
     }
@@ -66,7 +80,7 @@ function PostPage({image, userName, desc, following, topic, body}){
         const data = await res.json()
         //console.log(data.Posts, "is the data");
         setAuthorPosts(data.Posts);
-         setProfileAvatar(`${API_URL}${data.Posts[0]?.user.profilePics}`);
+         //setProfileAvatar(`${API_URL}${data.Posts[0]?.user.profilePics}`);
       }
     } catch (error) {
         //console.log("error here at fetchAuthorsPost");
@@ -314,7 +328,8 @@ return (
       
           <div className={style.imageAndNameinner}>
             <div className={style.authorImageContainer} style={{overflow:"hidden", objectFit:"cover",  backgroundImage:`url(${profileAvatar || defaultImage})`,  backgroundSize:"contain"}} ></div>
-              <Link to={`/myDashboard/${userId}`}>
+              {console.log(profileAvatar, "is the avatar")}
+            <Link to={`/myDashboard/${userId}`}>
                 <div className={style.usernameAndIntro}>
                   <h3 className={style.authorUsername}>{fetchedPost.user?.username  || "USER"} </h3>
                   <small className={style.intro}>{fetchedPost.user?.bio || "the great great user user"}</small>
@@ -351,9 +366,9 @@ return (
     </div>
 
     <div className={style.reactionContainer}>
-      <button onClick={()=>submitLike('like')}><img src={liker} className="iconImage" /><span className={style.reactionCount}>{like || "0"}</span></button>
-      <button onClick={()=>submitLike('dislike')}><img src={disliker} className="iconImage" /><span className={style.reactionCount}>{dislike || "0"}</span></button>
-      <button onClick={submitShare}><img src={share} className="iconImage"/></button>
+      <button onClick={()=>submitLike('like')}><img src={liker} className={style.iconImage} /><span className={style.reactionCount}>{like || "0"}</span></button>
+      <button onClick={() => submitLike('dislike')}><img src={disliker} className={style.iconImage} /><span className={style.reactionCount}>{dislike || "0"}</span></button>
+      <button onClick={submitShare}><img src={share} className={style.iconImage} /></button>
     </div>
 
     {isModalOpen && (

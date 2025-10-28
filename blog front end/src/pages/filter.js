@@ -137,7 +137,10 @@ function Filter({ applyFilters}){
                 <option value="all">all</option>
                 <option value="life">life</option>
                 <option value="job">job</option>
-                <option value="sports">sports</option>
+                  <option value="sports">sports</option>
+                  <option value="tech">sports</option>
+                  <option value="family">sports</option>
+                  <option value="friendship">sports</option>
               </select>
             </div>
           </div>

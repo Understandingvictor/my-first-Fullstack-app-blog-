@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import style from "../styles/newPost.module.css";
 import Modal1 from "../components/beneathModal";
+import Spinner from '../components/spinner';
 import { AccessTokenUseContext } from "../contexts/accessTokenContext";
 import { getAccessToken } from "../helpers/checkAuth";
 import { apiReFetch } from "../helpers/generalRetrying.helpers";
@@ -14,9 +15,10 @@ import { buttonAnimation } from "../motions/motion1.motions";
 
 function NewPost() {
   const navigate = useNavigate();
+  const [triggerSpinner, setTriggerSpinner] = useState(false);
   const [input, setInput] = useState({ title: "", body: "", category: "" });
   const [selectedTag, setSelectedTag] = useState("");
-  const [options, setOptions] = useState(['life', 'job', 'sports']);
+  const [options, setOptions] = useState(['life', 'job', "tech", "family", "friendship", 'sports']);
   const [array, setArray] = useState([]);
   const [newOption, setNewOption] = useState("");
   const { accessToken, setAccessToken } = AccessTokenUseContext();
@@ -31,10 +33,19 @@ function NewPost() {
     setOptions(prev => ([newOption, ...prev]));
     input.category = selectedTag;
   }
+  //handler to scroll to the top
+  const scrollToTheTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
 
   const formHandler = async (e) => {
     try {
       e.preventDefault();
+      setTriggerSpinner(true)
+      scrollToTheTop();
       const formData = new FormData(e.target);
       const dataObject = Object.fromEntries(formData.entries());
         
@@ -74,6 +85,7 @@ function NewPost() {
       //   return;
       // }
       if (response.status === 200) {
+        setTriggerSpinner(false)
         navigate("/experiences"); //your post will be first in the feed
       }
     }catch (error) {
@@ -104,6 +116,11 @@ function NewPost() {
     return (
       <>
         <div className={style.newPostSmall}>
+          {
+            triggerSpinner && (
+              <Spinner />
+            )
+          }
           < small>New Post</small>
         </div>
         <div className={style.formContainer}>

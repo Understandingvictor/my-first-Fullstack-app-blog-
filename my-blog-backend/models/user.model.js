@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
     }],
     bio: {
         type: String,
-        default:"add about section"
+        default:"Anonymous"
     }
 })
 

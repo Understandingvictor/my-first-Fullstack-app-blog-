@@ -12,7 +12,7 @@ const verifyUser = (req, res, next)=>{
        // console.log(token, "is the token from auth middleware")
         jwt.verify(token, process.env.ACCESSTOKEN_SECRET_KEY, (error, decoded)=>{
             if (error) {
-                console.log(error.message, "here at auth middleware");
+                //console.log(error.message, "here at auth middleware");
                 return next(throwErrorMessage("token expired", 401)); 
             }
             req.user = {userId:decoded.userId}; 

@@ -130,85 +130,81 @@ function Posts() {
           className={`${style1.postsShareButton}`}
         />
       </Link>
-      <center >
-              <div style={{
-        display: "flex",
-        padding: "5px",
-
-      }}>
-        <p> PAGE {currentPage} of {pages}</p>
-        
+      <center>
+        <div
+          style={{
+            display: "flex",
+            padding: "5px",
+          }}>
+          <p>
+            {" "}
+            PAGE {currentPage} of {pages}
+          </p>
         </div>
-        {
-          triggerSpinner ? (<Spinner />) : (
-            
-          posts.length === 0 ? (
-            <p style={{fontStyle:"italic", marginTop:"30vh"}}>no posts available pls try another filter</p>
-          ):(
-        <div className={style.cardContainerr}>
-        {
-          posts.map((eachPost, index) => {
-            let picsUrl; 
-            let date = formatDate(`${eachPost.updatedAt}`);
-            if (eachPost.user.profilePics) {
-              picsUrl = `${API_URL}${eachPost.user.profilePics}`
-            }
-            else {
-               picsUrl = undefined
-            }
-            //let picsUrl = eachPost.user.profilePics
-            //console.log(eachPost);
-            return (
-              <>
-                <Card key={index}
-                  authorUsername={<Link to={`/myDashboard/${eachPost.user._id}`}>{eachPost.user.username}</Link>}
-                  topic={eachPost.title}
-                  datePublished={date}
-                  bio={eachPost.user.bio}
-                  picture={picsUrl}
-                  likes={eachPost.likes}
-                  dislikes={eachPost.dislikes}
-                  userId={eachPost.user._id}
-                  postId={eachPost._id}
-                  IsReactedToFunction={isReactedToHandler}
-                /> 
-
-                
-            </>)
-          })
-        }
-        
-        </div>
-          )
-        
-          )
-        }
-        
-      
+        {triggerSpinner ? (
+          <Spinner />
+        ) : posts.length === 0 ? (
+          <p style={{ fontStyle: "italic", marginTop: "30vh" }}>
+            no posts available pls try another filter
+          </p>
+        ) : (
+          <div className={style.cardContainerr}>
+            {posts.map((eachPost, index) => {
+              let picsUrl;
+              let date = formatDate(`${eachPost.updatedAt}`);
+              if (eachPost.user.profilePics) {
+                picsUrl = `${API_URL}${eachPost.user.profilePics}`;
+              } else {
+                picsUrl = undefined;
+              }
+              //let picsUrl = eachPost.user.profilePics
+              //console.log(eachPost);
+              return (
+                <>
+                  <Card
+                    key={index}
+                    authorUsername={
+                      <Link to={`/myDashboard/${eachPost.user._id}`}>
+                        {eachPost.user.username}
+                      </Link>
+                    }
+                    topic={eachPost.title}
+                    datePublished={date}
+                    bio={eachPost.user.bio}
+                    picture={picsUrl}
+                    likes={eachPost.likes}
+                    dislikes={eachPost.dislikes}
+                    userId={eachPost.user._id}
+                    postId={eachPost._id}
+                    IsReactedToFunction={isReactedToHandler}
+                  />
+                </>
+              );
+            })}
+          </div>
+        )}
       </center>
 
-      <div style={{
-        display: "flex",
-        position: "fixed",
-        bottom:"30px"
-      }}>
-         {
-        currentPage !== 1 && (
-          <button onClick={previousPage} className={style.btnn} >previousPage</button>
-        )
-      }
-      {
-        pagesLeft !== 0 && posts.length !== 0  && (
-          <button onClick={nextPage} className={style.btnn}>nextPage</button>
-        )
-
-      }
+      <div
+        style={{
+          display: "flex",
+          position: "fixed",
+          bottom: "30px",
+        }}
+      >
+        {currentPage !== 1 && (
+          <button onClick={previousPage} className={style.btnn}>
+            previousPage
+          </button>
+        )}
+        {pagesLeft !== 0 && posts.length !== 0 && (
+          <button onClick={nextPage} className={style.btnn}>
+            nextPage
+          </button>
+        )}
       </div>
-     
 
-
-
-      <Filter applyFilters={applyFiltering}/>
+      <Filter applyFilters={applyFiltering} />
     </>
   );
 }

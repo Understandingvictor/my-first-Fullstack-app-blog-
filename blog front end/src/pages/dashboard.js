@@ -354,11 +354,11 @@ function UsersDashboard({ userName, desc }) {
             <div className={style.imageAndNameinner}>
               <div className={style.authorImageAndUpdateIcon}>
                 <div  className={style.authorImageContainer} style={{overflow:"hidden", objectFit:"cover", alignItems:"center", backgroundImage:`url(${profileAvatar || defaultImage})`,  backgroundSize:"contain"}}></div>
-                {
+               { /**{
                   userId === userIdFromContext && (
                     <img onClick={openUploadDialog} src={updateProfileIcon} className={style.updateProfileIcon}></img>
                   )
-                }
+                }**/}
               </div>
               <div className={style.usernameAndIntro}>
                 <h3 className={style.authorUsername}>{posts[0]?.user.username || "USER"} </h3>
