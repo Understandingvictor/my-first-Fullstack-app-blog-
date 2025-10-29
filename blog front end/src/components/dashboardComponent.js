@@ -134,7 +134,7 @@ const { accessToken, setAccessToken } = AccessTokenUseContext();
       <>
         <div className={style.components}>
           <div className={style.titlehContainer}><p className={style.titleh3}>{title || "this is title"}</p></div>
-          <div>
+          <div className={style.reactionsContainer}>
             <DashboardButton image={<img src={like} className={style.iconImage} alt="like"/>}/> <span style={{fontSize:"xx-small"}}>{likes}</span>
             <DashboardButton image={<img src={disliker} className={style.iconImage} alt="dislike" />}/><span style={{ fontSize: "xx-small" }}>{dislikes}</span>
             {
