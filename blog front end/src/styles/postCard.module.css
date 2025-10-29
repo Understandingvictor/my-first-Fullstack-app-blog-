@@ -18,6 +18,9 @@
 
 
 }
+.cardContainer:hover{
+    border: 1px solid white;
+}
 .mainCardCont{
 
     text-align: center;

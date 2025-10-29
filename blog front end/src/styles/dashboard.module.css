@@ -11,6 +11,13 @@
     text-align: left;
     box-shadow: 6px 4px 10px 7px pink;
 }
+.iconImage{
+    padding: 2px;
+    width: 15px;
+}
+.titlehContainer{
+    width: 20%;
+}
 .logoutButton{
     width: 50%;
     opacity: 0.5;
@@ -177,7 +184,7 @@ color: red;
 
 /*styling for DashboardComponent component*/
 .components{
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     font-family: mont2;
     display: flex;
@@ -250,6 +257,15 @@ color: red;
     width: 25px;
     padding: 5px;
     cursor: pointer;
+    /*styling for DashboardComponent component*/
+.components{
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: mont2;
+    display: flex;
+    margin: 5px;
+    padding: 0;
+}
 }
 }
 @media (min-width:1024px) {
@@ -267,6 +283,19 @@ color: red;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
+/*styling for DashboardComponent component*/
+.components{
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: mont2;
+    display: flex;
 
+    margin: 5px;
+    padding: 0;
+}
 
+.iconImage{
+    padding: 2px;
+    width: 20px;
+}
 }

@@ -133,15 +133,15 @@ const { accessToken, setAccessToken } = AccessTokenUseContext();
     return (
       <>
         <div className={style.components}>
-          <div><p className={style.titleh3}>{title || "this is title"}</p></div>
+          <div className={style.titlehContainer}><p className={style.titleh3}>{title || "this is title"}</p></div>
           <div>
-            <DashboardButton image={<img src={like} className="iconImage" alt="like"/>}/> <span style={{fontSize:"xx-small"}}>{likes}</span>
-            <DashboardButton image={<img src={disliker} className="iconImage" alt="dislike" />}/><span style={{ fontSize: "xx-small" }}>{dislikes}</span>
+            <DashboardButton image={<img src={like} className={style.iconImage} alt="like"/>}/> <span style={{fontSize:"xx-small"}}>{likes}</span>
+            <DashboardButton image={<img src={disliker} className={style.iconImage} alt="dislike" />}/><span style={{ fontSize: "xx-small" }}>{dislikes}</span>
             {
               isAdmin && (
                 <>
-                  <DashboardButton image={<img src={editing} className="iconImage"/>} alt="edit"  handler={editHandler}/>
-                  <DashboardButton image={<img src={remover} className="iconImage" alt="delete"/>} handler={deleteHandler}/>
+                  <DashboardButton image={<img src={editing} className={style.iconImage}/>} alt="edit"  handler={editHandler}/>
+                  <DashboardButton image={<img src={remover} className={style.iconImage} alt="delete"/>} handler={deleteHandler}/>
                 </>
               )
             }
