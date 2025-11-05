@@ -94,15 +94,15 @@ function Homepage() {
         <div className={style.hamburgerLine2}></div>
         <div className={style.hamburgerLine3}></div>
       </div>
-      <navbar className={style.nav}>
-        <div onClick={()=>setIsmodalOpen(!isModalOpen)} className={isModalOpen ? `${style.modalBackdrop}` : ""}></div>
-        <ul className={`${style.navList} ${isModalOpen ? style.active : ""}`}>
+      <div onClick={()=>setIsmodalOpen(!isModalOpen)} className={isModalOpen ? `${style.modalBackdrop}` : ""}></div>
+      <navbar className={`${style.navList} ${isModalOpen ? style.active : ""}`}>
+        
+        <ul className={style.nave} >
           <li>
             <Link to={"/experiences"}>
               <motion.button
                 variants={buttonAnimation}
                 whileTap="whileTap"
-                animate="animate"
                 className={style.btn}>EXPERIENCES</motion.button>
             </Link> 
           </li>
@@ -135,7 +135,7 @@ function Homepage() {
         <Link to={"/newPost"}><motion.button
                       variants={buttonAnimation}
                       whileTap="whileTap" 
-                      animate="animate"
+                    
                       className={style.btnFirst}>SHARE EXPERIENCES
                       </motion.button>
         </Link>
@@ -163,7 +163,6 @@ function Homepage() {
           </div>
           <Link to={"/newPost"}>< motion.button 
                       variants={buttonAnimation}
-                      animate="animate"
                       whileTap="whileTap" 
                       className={style.btnn}>SHARE EXPERIENCE
                       </motion.button>
@@ -230,7 +229,6 @@ function Homepage() {
         </div>
 
         <Link to={"/experiences"}>< motion.button 
-                      animate="animate"
                       variants={buttonAnimation}
                       whileTap="whileTap" 
                       className={style.viewMorebtn}>MORE EXPERIENCES

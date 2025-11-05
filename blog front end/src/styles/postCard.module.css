@@ -2,13 +2,15 @@
     
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    border-top-right-radius: 10px ;
     background-color: black;
         background:transparent;
         background-image: url("../assets/images/bg2.jpg");
         background-position:100%;
         background-size: cover;
         background-repeat: no-repeat;
-     box-shadow: 0px 0px 3px 3px rgb(100, 1, 19);
+     box-shadow: 0px 0px 2px 2px rgb(100, 1, 19);
     width: 100%;
     margin-bottom: 15px;
 
@@ -20,6 +22,7 @@
 }
 .cardContainer:hover{
     border: 1px solid white;
+  
 }
 .mainCardCont{
 
@@ -72,6 +75,7 @@
 .btn{
     border: none;
     padding: 5px;
+    background-color: transparent;
 }
 .usernameAndIntro{
 display: flex; 
@@ -138,7 +142,7 @@ color: aliceblue;
         background-position:100%;
                 background-size: cover;
         background-repeat: no-repeat;
-     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+     box-shadow: 0px 0px 2px 2px rgb(59, 2, 12);
 
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px ;

@@ -23,28 +23,48 @@ html::before {
     margin-top: 13vh;
     margin-bottom: 20px;
 }
+/*
+.nav{
+    background-color: black;
+     position: absolute;
+      height: 100vh;
+    top: 14%;
+    left:-70vw;
+    z-index: 999;
+}
+*/
+.nave{
+    margin-top: 15px;
+    position: absolute;
+    z-index: 2000;
+    border-right: 2px solid rgb(255, 255, 255);
+    padding-right: 5px;
+    height: 90%;
+}
+
 .navList{
     list-style: none;
-    position: absolute;
+    position: fixed;
     background: linear-gradient(150deg, red 50%,  rgb(114, 3, 3) 100%);
-    height: 70vh;
+    height: 100vh;
     z-index: 1000;
     padding: 10px;
-    top: 14%;
+    top: 0;
     left:-70vw;
     box-shadow: 0px 0px 5px 1px rgb(37, 6, 6);
     text-align: end;
-    border-radius: 10px;
+
     transition: left 0.1s ease; 
 }
+    
 .logoutButton{
     width: 50%;
     left: 50%;
     bottom: 0;
     left: 40%;
+    padding: 10px;
     position: absolute;
-    border-top-left-radius: 10px;
-     border-top-right-radius: 10px;
+text-align: center;
     opacity: 0.5;
     background-color: black;
      color: rgb(187, 174, 174);
@@ -55,6 +75,7 @@ html::before {
 }
 .active{
     left:0vw;
+    height: 100vh;
 }
 .welcome{
     font-family: mont1;
@@ -68,7 +89,7 @@ html::before {
      font-family: mont1;
      border: none;
      margin: 5px 0px;
-     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+     box-shadow: 0px 0px 2px 2px rgb(59, 2, 12);
 }
 
 .viewMorebtn{
@@ -156,7 +177,7 @@ html::before {
      color: white;
      font-family: mont1;
      border: none;
-     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+     box-shadow: 0px 0px 2px 2px rgb(59, 2, 12);
 }
 
 /*for pictures and testimony */
@@ -309,22 +330,33 @@ fieldset{
         margin: 10px;
     }
     .welcome{
+        margin-top: 40px;
         font-size: large;
         font-family: mont1;
     }
-    .navList{
-    gap: 15px;
+    .nave{
+        padding: 5px;
+    margin-top: 0;
+    position: absolute;
+    z-index: 2000;
+   border-left: 2px solid rgb(83, 2, 2);
+     border-right: none;
+    padding-right: 5px;
     display: flex;
     list-style: none;
-    position: relative;
-    background: linear-gradient(59deg, red 2%,  rgb(0, 0, 0) 100%);
+    gap: 10px;
+    height: 90%;
+}
+    .navList{
+    gap: 1px;
+    position: absolute;
+    background: none;
     height: 5vh;
-    width: 50vw;
+    width: 95vw;
     z-index: 1000;
     padding: 10px;
-    top: 14%;
-    left:-10vw;
- background: linear-gradient(150deg, red 50%,  rgb(114, 3, 3) 100%);
+    top: 0;
+    left:0vw;
 
     box-shadow: none;
     border-radius: 10px;
@@ -353,7 +385,7 @@ fieldset{
      color: white;
      font-family: mont1;
      border: none;
-     box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+     box-shadow: 0px 0px 3px 2px rgb(59, 2, 12);
 }
 /*slider ssection*/
 .tagline{
@@ -395,7 +427,7 @@ hr{
     display: flex;
     flex-direction:row;
     border-top: 2px solid red;
-    box-shadow: 0px 0px 7px 3px rgb(59, 2, 12);
+    box-shadow: 0px 0px 3px 3px rgb(59, 2, 12);
     font-family: mont1;
     justify-content: center;
 }

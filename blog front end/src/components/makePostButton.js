@@ -4,8 +4,6 @@ import { motion } from "motion/react";
 function ShareYours({ text, className }) {
   return (
     <motion.button
-      variants={buttonAnimation}
-      animate="animate"
       whileTap="whileTap"
       className={className}>
       {text}
